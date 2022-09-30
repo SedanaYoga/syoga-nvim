@@ -15,9 +15,22 @@ packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim") -- Statusline
 	use("nvim-lua/plenary.nvim") -- Common utilities
 	use("onsails/lspkind-nvim") -- vscode-like pictograms
-	use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
-	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
+
+	-- Completion
 	use("hrsh7th/nvim-cmp") -- Completion
+	use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
+	use("hrsh7th/cmp-path") -- nvim-cmp source for buffer words
+	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
+	use("hrsh7th/cmp-cmdline") -- nvim-cmp source for neovim's built-in LSP
+	use("hrsh7th/cmp-nvim-lua") -- Completion
+	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" }) -- our lovely tabnine
+	use({ "hrsh7th/cmp-emoji" }) -- our lovely tabnine
+
+	-- Completion.snippets
+	use("L3MON4D3/LuaSnip")
+	use("saadparwaiz1/cmp_luasnip")
+	use("rafamadriz/friendly-snippets")
+
 	use("neovim/nvim-lspconfig") -- LSP
 	use("jose-elias-alvarez/null-ls.nvim") -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
 	use("MunifTanjim/prettier.nvim") -- Prettier plugin for Neovim's built-in LSP client
@@ -27,7 +40,6 @@ packer.startup(function(use)
 	use("tiagovla/tokyodark.nvim")
 
 	use("glepnir/lspsaga.nvim") -- LSP UIs
-	use("L3MON4D3/LuaSnip")
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
