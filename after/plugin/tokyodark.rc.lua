@@ -3,7 +3,6 @@ vim.g.tokyodark_transparent_background = true
 vim.g.tokyodark_enable_italic = true
 vim.g.tokyodark_color_gamma = "1.0"
 
-
 --[[ vim.g.tokyonight_colors = {
   fg = "#839496",
   fg_dark = "#586e75",
@@ -24,7 +23,4 @@ vim.g.tokyodark_color_gamma = "1.0"
   purple = "#6c71c4",
 } ]]
 
-
-
-vim.cmd[[colorscheme tokyodark]]
-
+vim.cmd([[colorscheme tokyodark]])

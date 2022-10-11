@@ -58,13 +58,6 @@ packer.startup(function(use)
 	use("windwp/nvim-ts-autotag") -- autotag html
 
 	use("norcalli/nvim-colorizer.lua")
-	use("folke/zen-mode.nvim")
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	})
 	use("akinsho/nvim-bufferline.lua")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("numToStr/Comment.nvim")
