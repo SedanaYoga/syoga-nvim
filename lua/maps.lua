@@ -2,6 +2,13 @@ local keymap = vim.keymap
 
 vim.g.mapleader = " "
 
+-- Bufferline
+keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {})
+keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", {})
+keymap.set("n", "<Leader>;h", "<Cmd>BufferLineCloseLeft<CR>", {})
+keymap.set("n", "<Leader>;l", "<Cmd>BufferLineCloseRight<CR>", {})
+keymap.set("n", "<Leader>;p", "<Cmd>BufferLineTogglePin<CR>", {})
+
 -- NvimTree
 keymap.set("n", "<Leader>e", "<cmd>NvimTreeToggle<cr>")
 

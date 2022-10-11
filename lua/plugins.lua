@@ -21,7 +21,6 @@ packer.startup(function(use)
 	use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
 	use("hrsh7th/cmp-path") -- nvim-cmp source for buffer words
 	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
-	use("hrsh7th/cmp-cmdline") -- nvim-cmp source for neovim's built-in LSP
 	use("hrsh7th/cmp-nvim-lua") -- Completion
 	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" }) -- our lovely tabnine
 	use({ "hrsh7th/cmp-emoji" }) -- our lovely tabnine
@@ -51,7 +50,6 @@ packer.startup(function(use)
 	use("kyazdani42/nvim-web-devicons") -- File icons
 	use("kyazdani42/nvim-tree.lua") -- Tree like file browser
 	use("nvim-telescope/telescope.nvim") -- Fuzzy finder
-	use("nvim-telescope/telescope-file-browser.nvim") -- Telescope extension for file browsing
 
 	use("windwp/nvim-autopairs") -- autopair bracket
 	use("windwp/nvim-ts-autotag") -- autotag html
