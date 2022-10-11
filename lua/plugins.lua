@@ -17,7 +17,10 @@ packer.startup(function(use)
 	use("onsails/lspkind-nvim") -- vscode-like pictograms
 
 	-- Completion
-	use("hrsh7th/nvim-cmp") -- Completion
+	use({
+		"hrsh7th/nvim-cmp",
+		commit = "203aa26fc2628ca285cc143685648ec45675bc8a",
+	}) -- Completion
 	use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
 	use("hrsh7th/cmp-path") -- nvim-cmp source for buffer words
 	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
