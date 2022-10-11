@@ -2,6 +2,9 @@ local keymap = vim.keymap
 
 vim.g.mapleader = " "
 
+-- NvimTree
+keymap.set("n", "<Leader>e", "<cmd>NvimTreeToggle<cr>")
+
 -- Yank line down and up
 keymap.set("n", "<Leader>j", "yypk<cr>")
 keymap.set("n", "<Leader>k", "yyPj<cr>")
@@ -20,10 +23,8 @@ keymap.set("v", ">", ">gv")
 keymap.set("v", "p", '"_dP')
 
 -- Comment
-vim.g.kommentary_create_default_mappings = false
-vim.api.nvim_set_keymap("n", "<leader>/", "<Plug>kommentary_line_default", {})
-vim.api.nvim_set_keymap("n", "<leader>c", "<Plug>kommentary_motion_default", {})
-vim.api.nvim_set_keymap("x", "<leader>/", "<Plug>kommentary_visual_default", {})
+vim.api.nvim_set_keymap("n", "<leader>/", "gcc", {})
+vim.api.nvim_set_keymap("x", "<leader>/", "gc", {})
 
 -- Do not yank with x
 keymap.set("n", "x", '"_x')
@@ -59,10 +60,10 @@ keymap.set("n", "sv", ":vsplit<Return><C-w>w", { silent = true })
 
 -- Move window
 -- keymap.set('n', '<Space>', '<C-w>w')
-keymap.set("", "sh", "<C-w>h")
-keymap.set("", "sk", "<C-w>k")
-keymap.set("", "sj", "<C-w>j")
-keymap.set("", "sl", "<C-w>l")
+keymap.set("", "<C-h>", "<C-w>h")
+keymap.set("", "<C-k>", "<C-w>k")
+keymap.set("", "<C-j>", "<C-w>j")
+keymap.set("", "<C-l>", "<C-w>l")
 
 -- Resize window
 keymap.set("n", "<C-w><left>", "<C-w><")

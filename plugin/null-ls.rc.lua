@@ -20,9 +20,7 @@ end
 
 local sources = {
 	null_ls.builtins.formatting.stylua,
-	null_ls.builtins.formatting.prettier.with({
-		extra_args = { "--single-quote", "--no-semi", "--jsx-single-quote", "--trailing-comma", "all" },
-	}),
+	null_ls.builtins.formatting.prettier,
 	null_ls.builtins.diagnostics.eslint_d.with({
 		diagnostics_format = "[eslint] #{m}\n(#{c})",
 	}),

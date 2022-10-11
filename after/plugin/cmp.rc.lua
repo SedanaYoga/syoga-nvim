@@ -1,9 +1,10 @@
-local status, cmp = pcall(require, "cmp")
+--[[ local status, cmp = pcall(require, "cmp")
 if not status then
 	return
-end
-local lspkind = require("lspkind")
+end ]]
 
+local cmp = require("cmp")
+local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 
 local has_words_before = function()
@@ -83,23 +84,54 @@ cmp.setup({
 			select = true,
 		}),
 	},
+	enabled = function()
+		-- disable in telescope
+		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		if buftype == "prompt" then
+			return false
+		end
+
+		-- disable completion in comments
+		local context = require("cmp.config.context")
+
+		-- keep command mode completion enabled when cursor is in a comment
+		if vim.api.nvim_get_mode().mode == "c" then
+			return true
+		else
+			return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+		end
+	end,
 
 	sources = cmp.config.sources({
-		{ name = "luasnip" },
+		{ name = "luasnip", max_item_count = 5 },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "buffer" },
-		{ name = "path" },
-		{ name = "cmdline" },
-		{ name = "emoji" },
-		{ name = "cmp_tabnine" },
+		{ name = "buffer", keyword_length = 4 },
+		{ name = "path", max_item_count = 5 },
+		-- { name = "cmdline", keyword_length = 2, max_item_count = 5 },
+		{ name = "emoji", max_item_count = 5 },
+		{ name = "cmp_tabnine", keyword_length = 5, max_item_count = 5 },
 	}, {
 		name = "buffer",
 	}),
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
-		-- format = lspkind.cmp_format({ with_text = false, maxwidth = 50 }),
-		format = function(entry, vim_item)
+		format = lspkind.cmp_format({
+			mode = "symbol_text",
+			menu = {
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[LUA]",
+				luasnip = "[LUASNIP]",
+				path = "[PATH]",
+				emoji = "[EMOJI]",
+				buffer = "[BUFF]",
+				-- cmdline = "[CMD]",
+				cmp_tabnine = "[TAB9]",
+			},
+			with_text = false,
+			maxwidth = 50,
+		}),
+		--[[ format = function(entry, vim_item)
 			-- Kind icons
 			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
 			vim_item.menu = ({
@@ -113,14 +145,23 @@ cmp.setup({
 				cmp_tabnine = "[TAB9]",
 			})[entry.source.name]
 			return vim_item
-		end,
-	},
-	experimental = {
-		ghost_text = true,
+		end, ]]
 	},
 })
 
-cmp.setup.cmdline({ "/", "?" }, {
+--[[ cmp.setup.cmdline(":", {
+	sources = {
+		{ name = "cmdline" },
+	},
+})
+
+cmp.setup.cmdline("/", {
+	sources = {
+		{ name = "buffer" },
+	},
+}) ]]
+
+--[[ cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
 		{ name = "buffer" },
@@ -134,7 +175,7 @@ cmp.setup.cmdline(":", {
 	}, {
 		{ name = "cmdline" },
 	}),
-})
+}) ]]
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 require("lspconfig")["tsserver"].setup({

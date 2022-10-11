@@ -17,6 +17,7 @@ telescope.setup({
 			n = {
 				["q"] = actions.close,
 				["l"] = actions.select_default,
+				["<Leader>q"] = actions.send_selected_to_qflist + actions.open_qflist,
 			},
 		},
 	},
@@ -47,21 +48,22 @@ telescope.setup({
 })
 
 -- Open File Browser at startup
-telescope.load_extension("file_browser")
+-- telescope.load_extension("file_browser")
 
-vim.keymap.set("n", ";f", function()
+vim.keymap.set("n", "<Leader>f", function()
 	builtin.find_files({
 		no_ignore = false,
 		hidden = true,
 	})
 end)
-vim.keymap.set("n", ";r", function()
+
+vim.keymap.set("n", "<Leader>r", function()
 	builtin.live_grep()
 end)
 vim.keymap.set("n", "\\\\", function()
 	builtin.buffers()
 end)
-vim.keymap.set("n", ";t", function()
+vim.keymap.set("n", "<Leader>t", function()
 	builtin.help_tags()
 end)
 vim.keymap.set("n", ";;", function()
@@ -70,7 +72,7 @@ end)
 vim.keymap.set("n", ";e", function()
 	builtin.diagnostics()
 end)
-vim.keymap.set("n", "<Leader>e", function()
+vim.keymap.set("n", "<Leader>b", function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",
 		cwd = telescope_buffer_dir(),

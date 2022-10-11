@@ -98,7 +98,7 @@ nvim_lsp.sumneko_lua.setup({
 
 nvim_lsp.tailwindcss.setup({})
 
-nvim_lsp.emmet_ls.setup({
+--[[ nvim_lsp.emmet_ls.setup({
 	capabilities = capabilities,
 	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
 	init_options = {
@@ -108,7 +108,7 @@ nvim_lsp.emmet_ls.setup({
 			},
 		},
 	},
-})
+}) ]]
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,

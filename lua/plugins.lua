@@ -46,11 +46,16 @@ packer.startup(function(use)
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 	})
+
+	-- FILE FINDER
 	use("kyazdani42/nvim-web-devicons") -- File icons
-	use("nvim-telescope/telescope.nvim")
-	use("nvim-telescope/telescope-file-browser.nvim")
-	use("windwp/nvim-autopairs")
-	use("windwp/nvim-ts-autotag")
+	use("kyazdani42/nvim-tree.lua") -- Tree like file browser
+	use("nvim-telescope/telescope.nvim") -- Fuzzy finder
+	use("nvim-telescope/telescope-file-browser.nvim") -- Telescope extension for file browsing
+
+	use("windwp/nvim-autopairs") -- autopair bracket
+	use("windwp/nvim-ts-autotag") -- autotag html
+
 	use("norcalli/nvim-colorizer.lua")
 	use("folke/zen-mode.nvim")
 	use({
@@ -61,7 +66,7 @@ packer.startup(function(use)
 	})
 	use("akinsho/nvim-bufferline.lua")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
-	use("b3nj5m1n/kommentary")
+	use("numToStr/Comment.nvim")
 
 	use("lewis6991/gitsigns.nvim")
 	use("dinhhuy258/git.nvim") -- For git blame & browse

@@ -1,40 +1,21 @@
-local status, comment = pcall(require, "nvim-treesitter.configs")
-if (not status) then return end
+local status_ok, comment = pcall(require, "Comment")
+if not status_ok then
+	return
+end
 
-comment.setup {
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false
-  },
-  config = {
-    typescript = { __default = '// %s', __multiline = '/* %s */' },
-    javascript = {
-      __default = '// %s',
-      jsx_element = '{/* %s */}',
-      jsx_fragment = '{/* %s */}',
-      jsx_attribute = '// %s',
-      comment = '// %s'
-    }
-  }
-}
+comment.setup({
+	pre_hook = function(ctx)
+		local U = require("Comment.utils")
 
-require('kommentary.config').configure_language('typescriptreact', {
-  single_line_comment_string = 'auto',
-  multi_line_comment_strings = 'auto',
-  hook_function = function()
-    require('ts_context_commentstring.internal').update_commentstring()
-  end,
+		local location = nil
+		if ctx.ctype == U.ctype.blockwise then
+			location = require("ts_context_commentstring.utils").get_cursor_location()
+		elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+			location = require("ts_context_commentstring.utils").get_visual_start_location()
+		end
+		return require("ts_context_commentstring.internal").calculate_commentstring({
+			key = ctx.ctype == U.ctype.linewise and "__default" or "__multiline",
+			location = location,
+		})
+	end,
 })
-
-require('kommentary.config').configure_language('html', {
-  single_line_comment_string = 'auto',
-  multi_line_comment_strings = 'auto',
-  hook_function = function()
-    require('ts_context_commentstring.internal').update_commentstring()
-  end,
-})
-
-require('ts_context_commentstring.internal').update_commentstring({
-  key = '__multiline',
-})
-
