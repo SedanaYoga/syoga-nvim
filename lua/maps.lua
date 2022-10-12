@@ -2,6 +2,10 @@ local keymap = vim.keymap
 
 vim.g.mapleader = " "
 
+-- Fold
+keymap.set("n", "zR", require("ufo").openAllFolds)
+keymap.set("n", "zM", require("ufo").closeAllFolds)
+
 -- Bufferline
 keymap.set("n", "<Tab>", "<Cmd>BufferLineCycleNext<CR>", {})
 keymap.set("n", "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", {})

@@ -7,6 +7,18 @@ end
 
 local protocol = require("vim.lsp.protocol")
 
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_save = function(_, bufnr)
+	vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = augroup_format,
+		buffer = bufnr,
+		callback = function()
+			vim.lsp.buf.format({ bufnr = bufnr })
+		end,
+	})
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -14,12 +26,9 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
 
-	local function buf_set_option(...)
-		vim.api.nvim_buf_set_option(bufnr, ...)
-	end
-
 	--Enable completion triggered by <c-x><c-o>
-	buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+	--local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	--buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Mappings.
 	local opts = { noremap = true, silent = true }
@@ -69,17 +78,22 @@ nvim_lsp.flow.setup({
 
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
-	filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+	filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript", "javascriptreact" },
 	cmd = { "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
 })
 
 nvim_lsp.sourcekit.setup({
 	on_attach = on_attach,
+	capabilities = capabilities,
 })
 
 nvim_lsp.sumneko_lua.setup({
-	on_attach = on_attach,
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -96,19 +110,20 @@ nvim_lsp.sumneko_lua.setup({
 	},
 })
 
-nvim_lsp.tailwindcss.setup({})
-
---[[ nvim_lsp.emmet_ls.setup({
+nvim_lsp.tailwindcss.setup({
+	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
-	init_options = {
-		html = {
-			options = {
-				["bem.enabled"] = true,
-			},
-		},
-	},
-}) ]]
+})
+
+nvim_lsp.cssls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+nvim_lsp.astro.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	underline = true,

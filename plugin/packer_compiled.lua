@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
+    url = "https://github.com/glepnir/dashboard-nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -148,11 +153,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["markdown-preview.nvim"] = {
-    loaded = true,
-    path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
-    url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -214,6 +214,11 @@ _G.packer_plugins = {
     path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
+  ["nvim-ufo"] = {
+    loaded = true,
+    path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/nvim-ufo",
+    url = "https://github.com/kevinhwang91/nvim-ufo"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -233,6 +238,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
+  },
+  ["promise-async"] = {
+    loaded = true,
+    path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/promise-async",
+    url = "https://github.com/kevinhwang91/promise-async"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -254,11 +264,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
-  },
-  ["zen-mode.nvim"] = {
-    loaded = true,
-    path = "/Users/sedanayoga/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
-    url = "https://github.com/folke/zen-mode.nvim"
   }
 }
 

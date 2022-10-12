@@ -49,6 +49,12 @@ packer.startup(function(use)
 		end,
 	})
 
+	-- Dashboard
+	use({ "glepnir/dashboard-nvim" })
+
+	-- Nvim Ultra Fold
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+
 	-- FILE FINDER
 	use("kyazdani42/nvim-web-devicons") -- File icons
 	use("kyazdani42/nvim-tree.lua") -- Tree like file browser
