@@ -38,6 +38,9 @@ local on_attach = function(client, bufnr)
 	--buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	--buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+
+	-- TailwindCSS color highlight
+	-- require("document-color").buf_attach(bufnr)
 end
 
 protocol.CompletionItemKind = {
@@ -70,6 +73,10 @@ protocol.CompletionItemKind = {
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- capabilities.textDocument.colorProvider = {
+-- 	dynamicRegistration = true,
+-- }
 
 nvim_lsp.flow.setup({
 	on_attach = on_attach,
@@ -115,7 +122,17 @@ nvim_lsp.tailwindcss.setup({
 	capabilities = capabilities,
 })
 
+nvim_lsp.graphql.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 nvim_lsp.cssls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+nvim_lsp.volar.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })

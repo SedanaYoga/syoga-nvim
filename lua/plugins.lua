@@ -38,9 +38,11 @@ packer.startup(function(use)
 	use("MunifTanjim/prettier.nvim") -- Prettier plugin for Neovim's built-in LSP client
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
+
+	-- Colorscheme
 	use("folke/tokyonight.nvim")
 	use("tiagovla/tokyodark.nvim")
-
+	use("EdenEast/nightfox.nvim")
 	use("glepnir/lspsaga.nvim") -- LSP UIs
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -64,6 +66,8 @@ packer.startup(function(use)
 	use("windwp/nvim-ts-autotag") -- autotag html
 
 	use("norcalli/nvim-colorizer.lua")
+	-- use("mrshmllow/document-color.nvim")
+
 	use("akinsho/nvim-bufferline.lua")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("numToStr/Comment.nvim")

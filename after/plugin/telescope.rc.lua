@@ -7,6 +7,9 @@ local builtin = require("telescope.builtin")
 
 telescope.setup({
 	defaults = {
+		preview = {
+			treesitter = false,
+		},
 		mappings = {
 			n = {
 				["q"] = actions.close,

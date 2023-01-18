@@ -21,7 +21,7 @@ end
 local sources = {
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.prettier,
-	null_ls.builtins.diagnostics.eslint_d.with({
+	null_ls.builtins.diagnostics.eslint.with({
 		diagnostics_format = "[eslint] #{m}\n(#{c})",
 	}),
 }
